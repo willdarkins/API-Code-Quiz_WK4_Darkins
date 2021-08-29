@@ -12,35 +12,39 @@
 <body>
     <header>
         <div class="view-high-scores">
-        <h3 class="high-score-link">View High Scores</h3>
-    </div>
-    <div class="timer-info">
-        <h3 class="timer">Time: 0</h3>
-    </div>
+            <h3 class="high-score-link">View High Scores</h3>
+        </div>
+        <div class="timer-info">
+            <h3 id="timer">Time: 0</h3>
+        </div>
     </header>
 
     <section class="main-content">
-    <div id="introduction">
-        <h1 class="page-title">Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-related questions within the time limit.
-            Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-        </p>
-        <button id="start-button" class="btn">Let's Begin!</button>
-    </div>
+        <div id="introduction">
+            <h1 class="page-title">Coding Quiz Challenge</h1>
+            <p class="explain">Try to answer the following code-related questions within the time limit.
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+            </p>
+            <div class="button-try">
+                <button id="start-button">Let's Begin!</button>
+            </div>
+        </div>
 
-    <div id="question-container">
-        <h1 id="question">Question</h1>
-        <ul id="answerList">
-            <div id="answerBts" class="answers">
-                <li><button class="btn">1. Answer</button></li>
-                <li><button class="btn">2. Answer</button></li>
-                <li><button class="btn">3. Answer</button></li>
-                <li><button class="btn">4. Answer</button></li>
-        </ul>
-    </div>
-</section>
+        <div id="question-container">
+            <h1 id="question">Question</h1>
+            <ul id="answerList">
+                <div id="answerBtns" class="answers">
+                    <!-- <li><button class="btn">1. Answer</button></li>
+                    <li><button class="btn">2. Answer</button></li>
+                    <li><button class="btn">3. Answer</button></li>
+                    <li><button class="btn">4. Answer</button></li> -->
+            </ul>
+        </div>
+    </section>
 
-    <div class="results"><p></p></div>
+    <div class="results">
+        <p></p>
+    </div>
     </div>
 </body>
 <script src="./assets/js/script.js"></script>

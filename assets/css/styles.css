@@ -30,16 +30,39 @@ header {
     align-items: center;
 }
 
-.introduction {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+.page-title {
     text-align: center;
+    font-size: 30px;
+}
+
+
+.explain {
+    text-align: center;
+}
+
+#start-button {
+    align-items: center;
+    background-color: navy;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button-try {
+    left: 45%;
+    margin: 0;
+    position: absolute;
+    -ms-transform: translateY(-50%, -50%);
+    transform: translateY(-50%, -50%);
+    display: flex;
 }
 
 #question-container {
     margin: 0 auto;
-    width: 400px;
+    width: 800px;
     height: auto;
     display: flex;
     flex-direction: column;

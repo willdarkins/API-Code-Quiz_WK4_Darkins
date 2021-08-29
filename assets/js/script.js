@@ -1,150 +1,173 @@
-var quizContainer = document.getElementById('question-container');
-var answerBts = document.getElementById('answerBts');
-var resultContainer = document.getElementById('results');
 var startButton = document.getElementById('start-button');
 var introContainer = document.getElementById('introduction');
+var quizContainer = document.getElementById('question-container');
+var questionEl = document.getElementById('question');
+var answerBtns = document.getElementById('answerBtns');
 var timerEl = document.getElementById('timer');
-var instantResult = document.getElementById('results')
 var quizQuestions = [
     {
-        q: 'Inside which HTML element do we put the JavaScript?',
-        c: {
-            1: "<js>",
-            2: "<javascript>",
-            3: "<scripting>",
-            4: "<script>",
-
-        },
-        a: "4"
+        question: 'Inside which HTML element do we put the JavaScript?',
+        answers: [
+            { text: "<js>", correct: false},
+            { text: "<javascript>", correct: false},
+            { text: "<scripting>", correct: false},
+            { text: "<script>", correct: true},
+        ]
     },
 
     {
-        q: 'Where is the correct place to insert a JavaScript?',
-        c: {
-            1: "Both the <head> section and <body> section are correct",
-            2: "The <body> section",
-            3: "The <head> section",
-            4: "The <footer> section",
-        },
-        a: "2"
+        question: 'Where is the correct place to insert a JavaScript?',
+        answers: [
+            { text: "Both the <head> section and <body> section are correct", correct: false},
+            { text: "The <body> section", correct: true},
+            { text: "The <head> section", correct: false},
+            { text: "The <footer> section", correct: false},
+        ]
     },
 
     {
-        q: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-        c: {
-            1: "script name ='xxx.js'",
-            2: "script href = 'xxx.js",
-            3: "script src = 'xxx.js'",
-            4: "script put me here = 'xxx.js'",
-        },
-        a: "3"
+        question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
+        answers: [
+            { text: "script name ='xxx.js'", correct: false},
+            { text: "script href = 'xxx.js", correct: false},
+            { text: "script src = 'xxx.js'", correct: true},
+            { text: "script put me here = 'xxx.js'", correct: false},
+        ]
     },
 
     {
-        q: 'How do you write "Hello World" in an alert box?',
-        c: {
-            1: "alert('Hello World')",
-            2: "msg('Hello World')",
-            3: "msgBox('Hello World')",
-            4: "alertBox('Hello World')",
-        },
-        a: "1"
+        question: 'How do you write "Hello World" in an alert box?',
+        answers: [
+            { text: "alert('Hello World')", correct: true},
+            { text: "msg('Hello World')", correct: false},
+            { text: "msgBox('Hello World')", correct: false},
+            { text: "alertBox('Hello World')", correct: false},
+        ]
     },
 
     {
-        q: 'How do you create a function in JavaScript?',
-        c: {
-            1: "function:myFunction()",
-            2: "Can I get a function, and side of fries?",
-            3: "function = myFunction()",
-            4: "function MyFunction()",
-        },
-        a: "4"
+        question: 'How do you create a function in JavaScript?',
+        answers: [
+            { text: "function:myFunction()", correct: false},
+            { text: "Can I get a function, and side of fries?", correct: false},
+            { text: "function = myFunction()", correct: false},
+            { text: "function MyFunction()", correct: true},
+        ]
     },
 
     {
-        q: 'Which one of these are the correct way to write an "if" statement in JavaScript?',
-        c: {
-            1: "if i == 5 then",
-            2: "if (i==5)",
-            3: "if i==5 then",
-            4: "if i=5",
-        },
-        a: "2"
+        question: 'Which one of these are the correct way to write an "if" statement in JavaScript?',
+        answers: [
+            { text: "if i == 5 then", correct: false},
+            { text: "if (i==5)", correct: true}, 
+            { text: "if i==5 then", correct: false},
+            { text: "if i=5", correct: false},
+        ]
     },
 
     {
-        q: 'How do you add a comment in JavaScript?',
-        c: {
-            1: "//This is a comment",
-            2: "<!--This is a comment--!>",
-            3: "Call the DMV and make them do it",
-            4: "'This is a comment'",
-        },
-        a: "1"
+        question: 'How do you add a comment in JavaScript?',
+        answers: [
+            { text: "//This is a comment", correct: true},
+            { text: "<!--This is a comment--!>", correct: false},
+            { text: "Call the DMV and make them do it", correct: false},
+            { text: "'This is a comment'", correct: false},
+        ]
     },
 
     {
-        q: 'Which is the right way to write a JavaScript array?',
-        c: {
-            1: "var colors = 'red', 'green', 'blue'",
-            2: "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')",
-            3: "var colors = ['red', 'green', 'blue']",
-            4: "var colors = (1:'red',2:'green', 3:'blue')",
-        },
-        a: "3"
+        question: 'Which is the right way to write a JavaScript array?',
+        answers: [
+            { text: "var colors = 'red', 'green', 'blue'", correct: false},
+            { text: "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')", correct: false},
+            { text: "var colors = ['red', 'green', 'blue']", correct: true},
+            { text: "var colors = (1:'red',2:'green', 3:'blue')", correct: false},
+        ]
     },
 
     {
-        q: 'How do you find the number with the highest value of x and y?',
-        c: {
-            1: "ceil(x,y)",
-            2: "Math.max(x,y)",
-            3: "Mathe.ceil(x,y)",
-            4: "Count on your fingers and toes!",
-        },
-        a: "2"
+        question: 'How do you find the number with the highest value of x and y?',
+        answers: [
+            { text: "ceil(x,y)", correct: false},
+            { text: "Math.max(x,y)", correct: true},
+            { text: "Mathe.ceil(x,y)", correct: false},
+            { text: "Mathe.ceil(x,y)", correct: false},
+        ]
     },
 
     {
-        q: 'Is JavaSciprt hard to learn?',
-        c: {
-            1: "Yes, and you should give up after one try.",
-            2: "No, and you should set aside 15 minute to master it.",
-            3: "Is that the same as Java?",
-            4: "Yes, but it's totally fulfilling and makes you a confident and capable programmer.",
-        },
-        a: "2"
-    },
+        question: 'Is JavaSciprt hard to learn?',
+        answers: [
+            { text: "Yes, and you should give up after one try.", correct: false},
+            { text: "Yes, and you should give up after one try.", correct: false},
+            { text: "Is that the same as Java?", correct: false},
+            { text: "Yes, but it's totally fulfilling and makes you a confident and capable programmer.", correct: true},
+        ]
+    }
 ]
 
-startButton.addEventListener('click', function() {
-    quizContainer.setAttribute('style', 'display: block');
+function startGame() {
     introContainer.setAttribute('style', 'display: none');
-    countdown();
-});
+    quizContainer.setAttribute('style', 'display: block');
+    nextQuestion();
+}
 
-function countdown() {
-    var timeLeft = 60;
+function nextQuestion() {
+
+    getQuestion(quizQuestions[0]);
+}
+
+function getQuestion(question) {
+    questionEl.innerText = question.question;
+    question.answers.forEach(answer => {
+        var button = document.createElement('button');
+        button.setAttribute('style', 'display: flex', 'flex-direction: column')
+        button.innerText = answer.text;
+        button.classList.add('btn');
+        button.addEventListener('click', selectAnswer)
+        answerBtns.appendChild(button);
+    });
+}
+
+function resetQuiz () {
+
+}
+
+function selectAnswer() {
+
+}
+
+startButton.addEventListener('click', startGame)
+
+function countDown() {
+     var timeLeft = 60;
   
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function() {
-      if (timeLeft > 1) {
-        timerEl.textContent = 'Time: ' + timeLeft;
-        timeLeft--;
-      } else if (timeLeft === 1) {
-        timerEl.textContent = 'Time: ' + timeLeft;
-        timeLeft--;
-      } else {
-        timerEl.textContent = '';
-        clearInterval(timeInterval);
-      }
-    }, 1000);
-  }
+     var timeInterval = setInterval(function() {
+       if (timeLeft > 1) {
+         timerEl.textContent = 'Time: ' + timeLeft;
+         timeLeft--;
+       } else if (timeLeft === 1) {
+         timerEl.textContent = 'Time: ' + timeLeft;
+         timeLeft--;
+       } else {
+         timerEl.textContent = '';
+         clearInterval(timeInterval);
+       }
+     }, 1000);
+     console.log(setInterval)
+   }
 
 
 
+//Want a function that's updating the time based on right/wrong questions
+// statQuiz, getQuestion, countdown(needs to include wrong and right values for time), endQuiz, clockTick, saveHighScore.
 
+//getQustion called within startQuiz - getQuestion will build logic for all questions. 
+//if they get the answer wrong, subtract 15, otherwise, keep as is.
+//countdown will set and subract time from question results - Calling to get another question or if run out of time, end quiz
+//endQuiz - finalize high score and let user know quiz is over
+//clockTick
+//saveHighScore stores all high scores - There also needs to be a click even in the top left link.
 
 // Basic Timer function set for 1:00 to complete the quiz
 // var endGame = function() {
