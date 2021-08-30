@@ -6,16 +6,6 @@ var answerBtns = document.getElementById('answerBtns');
 var timerEl = document.getElementById('timer');
 var quizQuestions = [
     {
-        question: 'Inside which HTML element do we put the JavaScript?',
-        answers: [
-            { text: "<js>", correct: false},
-            { text: "<javascript>", correct: false},
-            { text: "<scripting>", correct: false},
-            { text: "<script>", correct: true},
-        ]
-    },
-
-    {
         question: 'Where is the correct place to insert a JavaScript?',
         answers: [
             { text: "Both the <head> section and <body> section are correct", correct: false},
@@ -113,8 +103,8 @@ function startGame() {
 }
 
 function nextQuestion() {
-
     getQuestion(quizQuestions[0]);
+    countDown();
 }
 
 function getQuestion(question) {
@@ -134,7 +124,9 @@ function resetQuiz () {
 }
 
 function selectAnswer() {
-
+    if (answer.correct = true) {
+        addEventListener('click', 'style', 'background-color: red');
+    }   
 }
 
 startButton.addEventListener('click', startGame)
@@ -154,7 +146,6 @@ function countDown() {
          clearInterval(timeInterval);
        }
      }, 1000);
-     console.log(setInterval)
    }
 
 
@@ -174,4 +165,4 @@ function countDown() {
 //     alert('You have run out of time');
 // };
 
-// var startCountdown = setTimeout(endGame,60000)
+// var startCountdown = setTimeout(endGame,60000)   
