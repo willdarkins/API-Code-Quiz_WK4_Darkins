@@ -24,81 +24,89 @@ var quizQuestions = [
     {
         question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
         answers: [
-            { text: "script name ='xxx.js'", correct: false },
-            { text: "script href = 'xxx.js", correct: false },
-            { text: "script src = 'xxx.js'", correct: true },
-            { text: "script put me here = 'xxx.js'", correct: false },
-        ]
+            "script name ='xxx.js'",
+            "script href = 'xxx.js",
+            "script src = 'xxx.js'",
+            "script put me here = 'xxx.js'",
+        ],
+        correct: 2
     },
 
     {
         question: 'How do you write "Hello World" in an alert box?',
         answers: [
-            { text: "alert('Hello World')", correct: true },
-            { text: "msg('Hello World')", correct: false },
-            { text: "msgBox('Hello World')", correct: false },
-            { text: "alertBox('Hello World')", correct: false },
-        ]
+            "alert('Hello World')",
+            "msg('Hello World')",
+            "msgBox('Hello World')",
+            "alertBox('Hello World')",
+        ],
+        correct: 0
     },
 
     {
         question: 'How do you create a function in JavaScript?',
         answers: [
-            { text: "function:myFunction()", correct: false },
-            { text: "Can I get a function, and side of fries?", correct: false },
-            { text: "function = myFunction()", correct: false },
-            { text: "function MyFunction()", correct: true },
-        ]
+            "function:myFunction()",
+            "Can I get a function, and side of fries?",
+            "function = myFunction()",
+            "function MyFunction()",
+        ],
+        correct: 3
     },
 
     {
         question: 'Which one of these are the correct way to write an "if" statement in JavaScript?',
         answers: [
-            { text: "if i == 5 then", correct: false },
-            { text: "if (i==5)", correct: true },
-            { text: "if i==5 then", correct: false },
-            { text: "if i=5", correct: false },
-        ]
+            "if i == 5 then",
+            "if (i==5)",
+            "if i==5 then",
+            "if i=5",
+        ],
+        correct: 1
     },
 
     {
         question: 'How do you add a comment in JavaScript?',
         answers: [
-            { text: "//This is a comment", correct: true },
-            { text: "<!--This is a comment--!>", correct: false },
-            { text: "Call the DMV and make them do it", correct: false },
-            { text: "'This is a comment'", correct: false },
-        ]
+            "//This is a comment",
+            "<!--This is a comment--!>",
+            "Call the DMV and make them do it",
+            "'This is a comment'",
+        ],
+        correct: 0
     },
 
     {
         question: 'Which is the right way to write a JavaScript array?',
         answers: [
-            { text: "var colors = 'red', 'green', 'blue'", correct: false },
-            { text: "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')", correct: false },
-            { text: "var colors = ['red', 'green', 'blue']", correct: true },
-            { text: "var colors = (1:'red',2:'green', 3:'blue')", correct: false },
-        ]
+            "var colors = 'red', 'green', 'blue'",
+            "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')",
+            "var colors = ['red', 'green', 'blue']",
+            "var colors = (1:'red',2:'green', 3:'blue')",
+        ],
+        correct: 2
     },
 
     {
         question: 'How do you find the number with the highest value of x and y?',
         answers: [
-            { text: "ceil(x,y)", correct: false },
-            { text: "Math.max(x,y)", correct: true },
-            { text: "Mathe.ceil(x,y)", correct: false },
-            { text: "Mathe.ceil(x,y)", correct: false },
-        ]
+            "ceil(x,y)",
+            "Math.max(x,y)",
+            "Mathe.ceil(x,y)",
+            "Mathe.ceil(x,y)",
+        ],
+        correct: 1
     },
 
     {
         question: 'Is JavaSciprt hard to learn?',
         answers: [
-            { text: "Yes, and you should give up after one try.", correct: false },
-            { text: "Yes, and you should give up after one try.", correct: false },
-            { text: "Is that the same as Java?", correct: false },
-            { text: "Yes, but it's totally fulfilling and makes you a confident and capable programmer.", correct: true },
-        ]
+            "Yes, and you should give up after one try.",
+            "Yes, and you should give up after one try.",
+            "Is that the same as Java?",
+            "Yes, but it's totally fulfilling and makes you a confident and capable programmer.",
+        ],
+        correct: 3
     }
 ]
 
@@ -128,22 +136,23 @@ function resetQuiz() {
 }
 
 function selectAnswer(userAnswer) {
-    if(userAnswer === quizQuestions[questionNumber].correct) {
+    if (userAnswer === quizQuestions[questionNumber].correct) {
+        instantResult.textContent = 'Correct!'
         userScore++
-    }
-    else {
-        timeLeft =- 10;
+        console.log(userScore);
+    } else {
+        timeLeft = - 10;
+        instantResult.textContent = 'Wrong!'
     }
     questionNumber++
-    if(quizQuestions.length > questionNumber) {
+    if (quizQuestions.length > questionNumber) {
         getQuestion();
     } else {
         quizEnd();
     }
-    //put instant result
 }
 
-function quizEnd () {
+function quizEnd() {
 
 }
 

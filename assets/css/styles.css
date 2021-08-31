@@ -94,6 +94,13 @@ cursor: pointer;
 }
 
 .results {
-    font-family: 'Shadows Into Light', cursive;
-    color: khaki;
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
 }
