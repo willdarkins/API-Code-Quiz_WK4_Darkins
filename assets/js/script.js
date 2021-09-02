@@ -7,6 +7,7 @@ var timerEl = document.getElementById('timer');
 var instantResult = document.getElementById('instant-result');
 var quizEndScreen = document.getElementById('finish-screen');
 var submitButton = document.getElementById('submit-initials');
+var userInitials = document.getElementById('initials')
 var finalScoreMessage = document.getElementById('final-score-message');
 var timeLeft = 60;
 var questionNumber = 0;
@@ -153,17 +154,19 @@ function selectAnswer(userAnswer) {
         }
         else {
             quizEnd();
+            clearInterval(timeInterval);
         }
     }, 1000);
 }
 
 function quizEnd() {
     quizContainer.setAttribute('style', 'display: none');
+    instantResult.setAttribute('style', 'display: none');
     quizEndScreen.setAttribute('style', 'display:block');
     timerEl.setAttribute('style', 'display: none');
+    clearInterval(countDown());
     finalScoreMessage.textContent = 'Your final score is ' + userScore + ".";
-    submitButton.innerText ='SUBMIT';
-        
+    submitButton.innerText ='SUBMIT';  
 }
 
 function countDown() {
@@ -184,6 +187,18 @@ function countDown() {
     }, 1000);
 
 
+}
+
+var savedScore = function() {
+    localStorage.setItem('userScore', JSON.stringify(userScore));
+}
+var savedInitials = function(initials) {
+    localStorage.setItem('initials', JSON.stringify(userInitials));
+}
+
+var loadSavedScores = function() {
+    var getSavedScore = localStorage.getItem('userScore');
+    var getSavedInitials = localStorage.getItem('userInitials');
 }
 
 startButton.addEventListener('click', startGame)
