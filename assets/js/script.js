@@ -135,7 +135,6 @@ function getQuestion() {
     answerD.innerText = quizQuestions[questionNumber].answers[3];
     instantResult.textContent = '';
 
-    localStorage.setItem('mostRecentScore', userScore)
 }
 
 
@@ -187,10 +186,8 @@ function countDown() {
 }
 
 
-var mostRecentScore = localStorage.getItem('mostRecentScore');
 var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-userScore.innerText = mostRecentScore;
 userName.addEventListener('keyup', function () {
     submitButton.disabled = !userName.value;
 })
@@ -199,7 +196,7 @@ function saveHighScore(e) {
     e.preventDefault();
 
     var score = {
-        score: mostRecentScore,
+        score: userScore,
         name: userName.value,
     };
     highScores.push(score);
@@ -208,6 +205,7 @@ function saveHighScore(e) {
     localStorage.setItem('highScores', JSON.stringify(highScores));
 
     location.assign(".//index-high-scores.html");
+    
 }
 
 
