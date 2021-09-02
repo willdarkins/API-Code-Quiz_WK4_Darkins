@@ -91,16 +91,44 @@ border: none;
 padding: 10px 20px;
 border-radius: 10px;
 cursor: pointer;
+transition: all 0.5s;
+}
+
+.btn:hover {
+    background-color: rgb(192, 192, 236);
+    color: navy ;
 }
 
 .results {
     margin: 0 auto;
     width: 800px;
     height: auto;
-    display: flex;
+    display: flex none;
     flex-direction: column;
     justify-content: flex-start;
     font-size: 30px;
     color: red;
     font-weight: bold;
+}
+
+.finish-container {
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: none;
+    font-size: 30px;
+}
+
+.initial-section {
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    display: none;
+    font-size: 30px;
 }

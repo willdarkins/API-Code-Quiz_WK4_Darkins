@@ -5,6 +5,9 @@ var questionEl = document.getElementById('question');
 var answerBtns = document.getElementById('answerBtns');
 var timerEl = document.getElementById('timer');
 var instantResult = document.getElementById('instant-result');
+var quizEndScreen = document.getElementById('finish-screen');
+var submitButton = document.getElementById('submit-initials');
+var finalScoreMessage = document.getElementById('final-score-message');
 var timeLeft = 60;
 var questionNumber = 0;
 var userScore = 0;
@@ -128,7 +131,7 @@ function getQuestion() {
     answerB.innerText = quizQuestions[questionNumber].answers[1];
     answerC.innerText = quizQuestions[questionNumber].answers[2];
     answerD.innerText = quizQuestions[questionNumber].answers[3];
-
+    instantResult.textContent = '';
 }
 
 function resetQuiz() {
@@ -139,25 +142,31 @@ function selectAnswer(userAnswer) {
     if (userAnswer === quizQuestions[questionNumber].correct) {
         instantResult.textContent = 'Correct!'
         userScore++
-        console.log(userScore);
     } else {
-        timeLeft = - 10;
+        timeLeft -= 10;
         instantResult.textContent = 'Wrong!'
     }
-    questionNumber++
-    if (quizQuestions.length > questionNumber) {
-        getQuestion();
-    } else {
-        quizEnd();
-    }
+    setTimeout(function () {
+        questionNumber++
+        if (quizQuestions.length > questionNumber) {
+            getQuestion();
+        }
+        else {
+            quizEnd();
+        }
+    }, 1000);
 }
 
 function quizEnd() {
-
+    quizContainer.setAttribute('style', 'display: none');
+    quizEndScreen.setAttribute('style', 'display:block');
+    timerEl.setAttribute('style', 'display: none');
+    finalScoreMessage.textContent = 'Your final score is ' + userScore + ".";
+    submitButton.innerText ='SUBMIT';
+        
 }
 
 function countDown() {
-
     var timeInterval = setInterval(function () {
         if (timeLeft > 1) {
             timerEl.textContent = 'Time: ' + timeLeft;
@@ -165,7 +174,10 @@ function countDown() {
         } else if (timeLeft === 1) {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
-        } else {
+        } else if(timeLeft === 0 || quizQuestions.length > questionNumber) {
+            quizEnd();
+        } 
+        else {
             timerEl.textContent = '';
             clearInterval(timeInterval);
         }
