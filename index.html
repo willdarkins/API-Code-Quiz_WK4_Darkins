@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="view-high-scores">
-            <h3 class="high-score-link"> <a href=".//index-high-scores.html">High Scores</h3></a>
+            <h3 class="high-score-link"> <a href=".//index-high-scores.html">View High Scores</h3></a>
         </div>
         <div class="timer-info">
             <h3 id="timer">Time: 0</h3>
@@ -23,7 +23,7 @@
         <div id="introduction">
             <h1 class="page-title">Coding Quiz Challenge</h1>
             <p class="explain">Try to answer the following code-related questions within the time limit.
-                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+                Keep in mind that incorrect answers will result in 10 seconds being deducted from your time!
             </p>
             <div class="button-try">
                 <button id="start-button">Let's Begin!</button>
@@ -51,7 +51,10 @@
             <form>
                 <label for="name" >Enter initials:</label>
                 <input id="initials" name= "name" type="text" placeholder="Initials"/>
-                <button id="submit-initials" class="btn"></button>
+                <button id="submit-initials"
+                class="btn"
+                onclick="saveHighScore(event)"
+                disabled></button>
             </form>
     </section>
 </body>

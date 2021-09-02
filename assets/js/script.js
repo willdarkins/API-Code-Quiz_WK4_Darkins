@@ -7,11 +7,12 @@ var timerEl = document.getElementById('timer');
 var instantResult = document.getElementById('instant-result');
 var quizEndScreen = document.getElementById('finish-screen');
 var submitButton = document.getElementById('submit-initials');
-var userInitials = document.getElementById('initials')
+var userName = document.getElementById('initials');
 var finalScoreMessage = document.getElementById('final-score-message');
 var timeLeft = 60;
 var questionNumber = 0;
 var userScore = 0;
+var maxHighScores = 5;
 
 var quizQuestions = [
     {
@@ -133,11 +134,10 @@ function getQuestion() {
     answerC.innerText = quizQuestions[questionNumber].answers[2];
     answerD.innerText = quizQuestions[questionNumber].answers[3];
     instantResult.textContent = '';
+
+    localStorage.setItem('mostRecentScore', userScore)
 }
 
-function resetQuiz() {
-
-}
 
 function selectAnswer(userAnswer) {
     if (userAnswer === quizQuestions[questionNumber].correct) {
@@ -154,7 +154,6 @@ function selectAnswer(userAnswer) {
         }
         else {
             quizEnd();
-            clearInterval(timeInterval);
         }
     }, 1000);
 }
@@ -166,57 +165,50 @@ function quizEnd() {
     timerEl.setAttribute('style', 'display: none');
     clearInterval(countDown());
     finalScoreMessage.textContent = 'Your final score is ' + userScore + ".";
-    submitButton.innerText ='SUBMIT';  
+    submitButton.innerText = 'SUBMIT';
 }
 
 function countDown() {
     var timeInterval = setInterval(function () {
-        if (timeLeft > 1) {
+        if (timeLeft > 0) {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
         } else if (timeLeft === 1) {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
-        } else if(timeLeft === 0 || quizQuestions.length > questionNumber) {
+        } else if (timeLeft === 0 || quizQuestions.length > questionNumber) {
             quizEnd();
-        } 
+        }
         else {
             timerEl.textContent = '';
-            clearInterval(timeInterval);
+            clearInterval(countDown());
         }
     }, 1000);
-
-
 }
 
-var savedScore = function() {
-    localStorage.setItem('userScore', JSON.stringify(userScore));
-}
-var savedInitials = function(initials) {
-    localStorage.setItem('initials', JSON.stringify(userInitials));
+
+var mostRecentScore = localStorage.getItem('mostRecentScore');
+var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+userScore.innerText = mostRecentScore;
+userName.addEventListener('keyup', function () {
+    submitButton.disabled = !userName.value;
+})
+
+function saveHighScore(e) {
+    e.preventDefault();
+
+    var score = {
+        score: mostRecentScore,
+        name: userName.value,
+    };
+    highScores.push(score);
+    highScores.sort( (a,b) => b.score - a.score);
+    highScores.splice(5);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+
+    location.assign(".//index-high-scores.html");
 }
 
-var loadSavedScores = function() {
-    var getSavedScore = localStorage.getItem('userScore');
-    var getSavedInitials = localStorage.getItem('userInitials');
-}
 
 startButton.addEventListener('click', startGame)
-
-
-//Want a function that's updating the time based on right/wrong questions
-// statQuiz, getQuestion, countdown(needs to include wrong and right values for time), endQuiz, clockTick, saveHighScore.
-
-//getQustion called within startQuiz - getQuestion will build logic for all questions. 
-//if they get the answer wrong, subtract 15, otherwise, keep as is.
-//countdown will set and subract time from question results - Calling to get another question or if run out of time, end quiz
-//endQuiz - finalize high score and let user know quiz is over
-//clockTick
-//saveHighScore stores all high scores - There also needs to be a click even in the top left link.
-
-// Basic Timer function set for 1:00 to complete the quiz
-// var endGame = function() {
-//     alert('You have run out of time');
-// };
-
-// var startCountdown = setTimeout(endGame,60000)   
