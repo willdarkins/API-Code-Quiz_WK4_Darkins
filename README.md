@@ -38,13 +38,12 @@ In the repository folder, you'll find .html, .css and .script source code. Copy 
 The application's educational value could be applied to the following industires on a large scale:
 * Educational
 * For profit boot camp colleges
-* Basic technical training for non profit tech edcuation blog  
+* Basic technical training for non profit tech edcuation blog
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
 ## Mockup
 ***
 Below is a short video diplaying the application's functionality:
