@@ -10,6 +10,9 @@
 </head>
 
 <body>
+
+<!-- View High Scores Link -->
+
     <header>
         <div class="view-high-scores">
             <h3 class="high-score-link"> <a href=".//index-high-scores.html">View High Scores</h3></a>
@@ -20,15 +23,20 @@
     </header>
 
     <section class="main-content">
+
+<!-- Game Introduction -->
+
         <div id="introduction">
             <h1 class="page-title">Coding Quiz Challenge</h1>
-            <p class="explain">Try to answer the following code-related questions within the time limit.
+            <p class="explain">Try to answer the following code-related questions within the time limit. <br>
                 Keep in mind that incorrect answers will result in 10 seconds being deducted from your time!
             </p>
             <div class="button-try">
                 <button id="start-button">Let's Begin!</button>
             </div>
         </div>
+
+<!-- Quiz Question Container -->
 
         <div id="question-container">
             <h1 id="question">Question</h1>
@@ -45,17 +53,16 @@
     </div>
     </div>
 
+<!-- Final Result Screen for Initials -->
+
     <section id="finish-screen" class="finish-container">
         <h1>All done!</h1>
         <div id="final-score-message"></div>
-            <form>
-                <label for="name" >Enter initials:</label>
-                <input id="initials" name= "name" type="text" placeholder="Initials"/>
-                <button id="submit-initials"
-                class="btn"
-                onclick="saveHighScore(event)"
-                disabled></button>
-            </form>
+        <form>
+            <label for="name">Enter initials:</label>
+            <input id="initials" name="name" type="text" placeholder="Initials" />
+            <button id="submit-initials" class="btn" onclick="saveHighScore(event)" disabled></button>
+        </form>
     </section>
 </body>
 <script src="./assets/js/script.js"></script>

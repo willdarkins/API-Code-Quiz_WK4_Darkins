@@ -133,13 +133,15 @@ transition: all 0.5s;
 }
 
 form {
-    flex-direction: row;
+    display: inline;
 }
 
 input {
     display: inline;
 }
 
-.paragraph {
-    display: inline;
+p {
+    text-align: center;
+    justify-content: center;
+    font-size: 25px;
 }

@@ -43,6 +43,7 @@ transition: all 0.5s;
     font-size: 30px;
 }
 
-textarea {
+li {
+    margin: 5px;
     background-color: lightblue;
 }

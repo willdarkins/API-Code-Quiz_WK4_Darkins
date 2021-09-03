@@ -1,3 +1,4 @@
+// Global Variables
 var startButton = document.getElementById('start-button');
 var introContainer = document.getElementById('introduction');
 var quizContainer = document.getElementById('question-container');
@@ -14,6 +15,7 @@ var questionNumber = 0;
 var userScore = 0;
 var maxHighScores = 5;
 
+// Array of Quiz Questions as Objects
 var quizQuestions = [
     {
         question: 'Where is the correct place to insert a JavaScript?',
@@ -115,6 +117,7 @@ var quizQuestions = [
     }
 ]
 
+// Begins game by feeding user question and starting timer
 function startGame() {
     introContainer.setAttribute('style', 'display: none');
     quizContainer.setAttribute('style', 'display: block');
@@ -122,6 +125,7 @@ function startGame() {
     countDown();
 }
 
+// Feeds user quesions
 function getQuestion() {
     questionEl.innerText = quizQuestions[questionNumber].question;
     var answerA = document.getElementById('a');
@@ -137,7 +141,7 @@ function getQuestion() {
 
 }
 
-
+// Handles time deduction and user score increase
 function selectAnswer(userAnswer) {
     if (userAnswer === quizQuestions[questionNumber].correct) {
         instantResult.textContent = 'Correct!'
@@ -157,6 +161,7 @@ function selectAnswer(userAnswer) {
     }, 1000);
 }
 
+// Ends quiz by clearing timer and presenting user with final score
 function quizEnd() {
     quizContainer.setAttribute('style', 'display: none');
     instantResult.setAttribute('style', 'display: none');
@@ -167,6 +172,7 @@ function quizEnd() {
     submitButton.innerText = 'SUBMIT';
 }
 
+// Runs countdown clock
 function countDown() {
     var timeInterval = setInterval(function () {
         if (timeLeft > 0) {
@@ -192,6 +198,7 @@ userName.addEventListener('keyup', function () {
     submitButton.disabled = !userName.value;
 })
 
+// Putting user initials and score into local storage
 function saveHighScore(e) {
     e.preventDefault();
 
@@ -200,11 +207,10 @@ function saveHighScore(e) {
         name: userName.value,
     };
     highScores.push(score);
-    highScores.sort( (a,b) => b.score - a.score);
+    highScores.sort((a, b) => b.score - a.score);
     localStorage.setItem('highScores', JSON.stringify(highScores));
 
     location.assign(".//index-high-scores.html");
-    
 }
 
 
