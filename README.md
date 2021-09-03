@@ -48,3 +48,7 @@ Please make sure to update tests as appropriate.
 ***
 Below is a short video diplaying the application's functionality:
 
+
+https://user-images.githubusercontent.com/84754257/132046699-07650ea5-19c4-4b62-9696-dbd5fded440d.mp4
+
+
